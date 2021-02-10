@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -21,6 +22,9 @@ public class Book {
 	private String title;
 
 	private String isbn;
+
+	@ManyToOne
+	private Publisher publisher;
 
 	@ManyToMany
 	@JoinTable(
@@ -70,13 +74,20 @@ public class Book {
 		this.authors = author;
 	}
 
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
 	@Override
 	public String toString() {
 		return "Book{" +
 				"id=" + id +
 				", title='" + title + '\'' +
 				", isbn='" + isbn + '\'' +
-				", authors=" + authors +
 				'}';
 	}
 
